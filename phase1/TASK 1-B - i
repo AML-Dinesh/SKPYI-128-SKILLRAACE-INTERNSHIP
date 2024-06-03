@@ -1,0 +1,53 @@
+class Book:
+    def __init__(self, title, author, publisher, price):
+        self._title = title
+        self._author = author
+        self._publisher = publisher
+        self._price = price
+        self._royalty = 0
+    def title(self):
+        return self._title
+    def title(self, value):
+        self._title = value
+    def author(self):
+        return self._author
+    def author(self, value):
+        self._author = value
+    def publisher(self):
+        return self._publisher
+    def publisher(self, value):
+        self._publisher = value
+    def price(self):
+        return self._price
+    def price(self, value):
+        self._price = value
+    def royalty(self):
+        return self._royalty
+    def royalty(self, value):
+        self._royalty = value
+    def calculate_royalty(self, copies_sold):
+        if copies_sold <= 500:
+            self._royalty = copies_sold * self._price * 0.10
+        elif copies_sold <= 1500:
+            self._royalty = (500 * self._price * 0.10) + ((copies_sold - 500) * self._price * 0.125)
+        else:
+            self._royalty = (500 * self._price * 0.10) + (1000 * self._price * 0.125) + ((copies_sold - 1500) * self._price * 0.15)
+        return self._royalty
+class Ebook(Book):
+    def __init__(self, title, author, publisher, price, format):
+        super().__init__(title, author, publisher, price)
+        self._format = format
+    def format(self):
+        return self._format
+    def format(self, value):
+        self._format = value
+    def calculate_royalty(self, copies_sold):
+        base_royalty = super().calculate_royalty(copies_sold)
+        gst_deducted_royalty = base_royalty * 0.88  # Deducting GST @12%
+        return gst_deducted_royalty
+
+book = Book("Book Title", "Author Name", "Publisher Name", 100)
+ebook = Ebook("Ebook Title", "Author Name", "Publisher Name", 100, "EPUB")
+
+print("Book Royalty for 2000 copies:", book.calculate_royalty(2000))
+print("Ebook Royalty for 2000 copies:", ebook.calculate_royalty(2000))
