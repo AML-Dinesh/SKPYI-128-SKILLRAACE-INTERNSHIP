@@ -1,0 +1,74 @@
+import turtle
+
+def draw_rectangle(color, width, height):
+    turtle.begin_fill()
+    turtle.color(color)
+    for _ in range(2):
+        turtle.forward(width)
+        turtle.right(90)
+        turtle.forward(height)
+        turtle.right(90)
+    turtle.end_fill()
+
+def draw_circle(color, radius):
+    turtle.begin_fill()
+    turtle.color(color)
+    turtle.circle(radius)
+    turtle.end_fill()
+
+def draw_spokes():
+    turtle.color('blue')
+    for _ in range(24):
+        turtle.forward(30)
+        turtle.backward(30)
+        turtle.right(15)
+
+def draw_flag():
+    turtle.speed(10)
+    turtle.penup()
+    turtle.goto(-150, 100)
+    turtle.pendown()
+
+    # Draw the saffron rectangle
+    draw_rectangle('orange', 300, 66.67)
+
+    turtle.penup()
+    turtle.goto(-150, 33.33)
+    turtle.pendown()
+
+    # Draw the white rectangle
+    draw_rectangle('white', 300, 66.67)
+
+    turtle.penup()
+    turtle.goto(-150, -33.34)
+    turtle.pendown()
+
+    # Draw the green rectangle
+    draw_rectangle('green', 300, 66.67)
+
+    # Draw the blue circle (Ashoka Chakra)
+    turtle.penup()
+    turtle.goto(0, 0)
+    turtle.pendown()
+    draw_circle('white', 30)
+
+    turtle.penup()
+    turtle.goto(0, -30)
+    turtle.pendown()
+    turtle.setheading(0)
+
+    draw_circle('blue', 30)
+
+    # Draw the 24 spokes
+    turtle.penup()
+    turtle.goto(0, 0)
+    turtle.pendown()
+    turtle.setheading(0)
+
+    draw_spokes()
+
+    turtle.hideturtle()
+    turtle.done()
+
+# Run the function to draw the flag
+draw_flag()
