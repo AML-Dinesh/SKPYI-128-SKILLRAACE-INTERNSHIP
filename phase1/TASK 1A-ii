@@ -1,0 +1,9 @@
+pip install demoji
+import demoji
+demoji.download_codes()
+text_with_emojis = "Hello 😍! Let's grab a coffee ☕️ and chat. and 🎶"
+text_without_emojis = demoji.replace(text_with_emojis, "")
+emoji_descriptions = demoji.findall(text_with_emojis)
+print("Original text:", text_with_emojis)
+print("Text without emojis:", text_without_emojis)
+print("Emoji descriptions:", emoji_descriptions)
