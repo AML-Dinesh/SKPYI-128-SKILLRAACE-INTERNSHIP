@@ -1,0 +1,43 @@
+def remove_common_characters(string1, string2):
+    list1 = list(string1)
+    list2 = list(string2)
+    for char in list1[:]:
+        if char in list2:
+            list1.remove(char)
+            list2.remove(char)
+    return ''.join(list1), ''.join(list2)
+def flames_count(name1, name2):
+    name1, name2 = remove_common_characters(name1, name2)
+    count = len(name1) + len(name2)
+    return count
+def flames_result(count):
+    flames = ['F', 'L', 'A', 'M', 'E', 'S']
+    while len(flames) > 1:
+        split_index = (count % len(flames)) - 1
+        if split_index >= 0:
+            right = flames[split_index + 1:]
+            left = flames[:split_index]
+            flames = right + left
+        else:
+            flames = flames[:len(flames) - 1]
+    return flames[0]
+def flames_meaning(letter):
+    meanings = {
+        'F': 'Friends',
+        'L': 'Lovers',
+        'A': 'Affectionate',
+        'M': 'Married',
+        'E': 'Enemies',
+        'S': 'Siblings'
+    }
+    return meanings[letter]
+def flames_game(name1, name2):
+    name1 = name1.replace(" ", "").lower()
+    name2 = name2.replace(" ", "").lower()
+    count = flames_count(name1, name2)
+    result = flames_result(count)
+    return flames_meaning(result)
+name1 = "Alice"
+name2 = "Bob"
+result = flames_game(name1, name2)
+print(f"The relationship between {name1} and {name2} is: {result}")
